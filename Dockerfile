@@ -14,5 +14,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY travel_api.py .
 
 # 6. Open port 8000 so the FastAPI Receptionist can hear the outside world
+
 EXPOSE 7860
 CMD ["uvicorn", "travel_api:api", "--host", "0.0.0.0", "--port", "7860"]
