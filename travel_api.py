@@ -24,7 +24,7 @@ def planner_node(State:TripState):
     print("Creating Plan....")
     current_city=State.get("city","")
     current_days=State.get("days","")
-    prompt=f"write a full itinearary of trip of{current_city}.{current_days}"
+    prompt = f"Write a detailed {current_days}-day travel itinerary for a trip to {current_city}."
     
     response=llm.invoke(prompt)
     ai_text=response.content
