@@ -32,11 +32,17 @@ def planner_node(State:TripState):
 
 def budget_node(State:TripState):
     print("Processing Budget")
-    current_itinerary=State.get("itinerary")
-    prompt=f"write 1-line estimate budget of {current_itinerary}"
-    response=llm.invoke(prompt)
-    ai_text=response.content
-    return{"budget":ai_text}
+    current_itinerary = State.get("itinerary", "")
+    
+
+    current_days = State.get("days", 1) 
+    
+    
+    prompt = f"Based on this itinerary: {current_itinerary}, write a 1-line estimated TOTAL budget for the entire {current_days}-day trip."
+    
+    response = llm.invoke(prompt)
+    ai_text = response.content
+    return {"budget": ai_text}
 
 workflow=StateGraph(TripState)
 workflow.add_node("plan",planner_node)
